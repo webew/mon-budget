@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Budget</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <h1>Mon Budget</h1>
+      <div class="solde-bloc">
+        <div class="solde-carte solde-principal">
+          <span class="solde-label">Solde actuel</span>
+          <span class="solde-valeur" id="solde">0,00 €</span>
+        </div>
+        <div class="solde-carte solde-revenus">
+          <span class="solde-label">Revenus</span>
+          <span class="solde-valeur" id="total-revenus">0,00 €</span>
+        </div>
+        <div class="solde-carte solde-depenses">
+          <span class="solde-label">Dépenses</span>
+          <span class="solde-valeur" id="total-depenses">0,00 €</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Formulaire d'ajout -->
+    <section class="carte" id="section-formulaire">
+      <h2>Ajouter une transaction</h2>
+      <form id="formulaire">
+
+        <div class="champ-type">
+          <label class="radio-label">
+            <input type="radio" name="type" value="depense" checked />
+            <span class="radio-btn depense">Dépense</span>
+          </label>
+          <label class="radio-label">
+            <input type="radio" name="type" value="revenu" />
+            <span class="radio-btn revenu">Revenu</span>
+          </label>
+        </div>
+
+        <div class="champs-grille">
+          <div class="champ">
+            <label for="montant">Montant (€)</label>
+            <input type="number" id="montant" min="0.01" step="0.01" placeholder="0,00" />
+            <span class="erreur" id="erreur-montant"></span>
+          </div>
+
+          <div class="champ">
+            <label for="categorie">Catégorie</label>
+            <select id="categorie">
+              <option value="">— Choisir —</option>
+              <option value="alimentation">Alimentation</option>
+              <option value="logement">Logement</option>
+              <option value="transport">Transport</option>
+              <option value="loisirs">Loisirs</option>
+              <option value="sante">Santé</option>
+              <option value="autres">Autres</option>
+            </select>
+            <span class="erreur" id="erreur-categorie"></span>
+          </div>
+
+          <div class="champ">
+            <label for="date">Date</label>
+            <input type="date" id="date" />
+            <span class="erreur" id="erreur-date"></span>
+          </div>
+
+          <div class="champ champ-large">
+            <label for="description">Description</label>
+            <input type="text" id="description" placeholder="Ex : Courses du weekend" maxlength="100" />
+          </div>
+        </div>
+
+        <button type="submit" id="btn-ajouter">Ajouter</button>
+      </form>
+    </section>
+
+    <!-- Tableau de bord : graphique -->
+    <section class="carte" id="section-graphique">
+      <h2>Répartition des dépenses</h2>
+      <div class="graphique-conteneur">
+        <canvas id="graphique" width="240" height="240"></canvas>
+        <ul id="legende" class="legende"></ul>
+      </div>
+      <p id="graphique-vide" class="texte-vide" hidden>Aucune dépense enregistrée.</p>
+    </section>
+
+    <!-- Historique -->
+    <section class="carte" id="section-historique">
+      <div class="historique-entete">
+        <h2>Historique</h2>
+        <div class="filtres">
+          <select id="filtre-type">
+            <option value="">Tout</option>
+            <option value="depense">Dépenses</option>
+            <option value="revenu">Revenus</option>
+          </select>
+          <select id="filtre-categorie">
+            <option value="">Toutes catégories</option>
+            <option value="alimentation">Alimentation</option>
+            <option value="logement">Logement</option>
+            <option value="transport">Transport</option>
+            <option value="loisirs">Loisirs</option>
+            <option value="sante">Santé</option>
+            <option value="autres">Autres</option>
+          </select>
+          <input type="month" id="filtre-mois" title="Filtrer par mois" />
+          <button id="btn-effacer-filtres" class="btn-secondaire">Réinitialiser</button>
+        </div>
+      </div>
+
+      <ul id="liste-transactions" class="liste-transactions"></ul>
+      <p id="liste-vide" class="texte-vide" hidden>Aucune transaction trouvée.</p>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
