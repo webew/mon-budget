@@ -20,7 +20,7 @@ Application web de gestion de budget personnel, entièrement en français, avec 
 
 ### Tableau de bord
 - Solde actuel (revenus − dépenses)
-- Graphique de répartition des dépenses par catégorie (canvas ou SVG natif)
+- Graphique donut de répartition des dépenses par catégorie (Canvas natif, total au centre)
 - Totaux revenus / dépenses
 
 ### Historique
@@ -28,13 +28,29 @@ Application web de gestion de budget personnel, entièrement en français, avec 
 - Filtres : par catégorie, par type (dépense/revenu), par période
 - Suppression d'une transaction
 
+## Repository
+
+- **GitHub** : https://github.com/webew/mon-budget
+- **Branche principale** : `main`
+
+## Lancer en local
+
+```bash
+npx serve . --listen 3000
+# puis ouvrir http://localhost:3000
+```
+
+Le fichier `.claude/launch.json` configure le serveur de prévisualisation (port 3000).
+
 ## Structure des fichiers
 
 ```
 Mon-budget/
-├── index.html       # Page principale
-├── style.css        # Styles globaux
-└── app.js           # Logique applicative
+├── index.html            # Page principale
+├── style.css             # Styles globaux
+└── app.js                # Logique applicative
+└── .claude/
+    └── launch.json       # Serveur de prévisualisation (npx serve, port 3000)
 ```
 
 ## Modèle de données (localStorage)
